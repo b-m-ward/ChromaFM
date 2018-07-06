@@ -1,0 +1,6 @@
+<div class="row play-pane">
+  <select class="form-group" (change)="selectStation($event.target.value)">
+    <option *ngFor="let channel of stations" value="{{channel.uri}}">{{channel.name}}</option>
+  </select>
+  <p class="play-label" (click)="playStation()">{{playLabel}}</p>
+</div>
