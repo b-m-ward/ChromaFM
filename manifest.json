@@ -1,0 +1,16 @@
+{
+	"name": "ChromaFM",
+	"version": "1.0",
+	"description": "Chrome + SomaFM",
+	"manifest_version": 2,
+	"permissions": [
+		"background"
+	],
+	"background": {
+		"scripts": ["background_player.js"],
+		"persistent": true
+	},
+	"browser_action": {
+      "default_popup": "popup.html"
+    }
+}

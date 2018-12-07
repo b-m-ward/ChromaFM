@@ -1,2 +1,0 @@
-# ChromaFM
-SomaFM + Chrome
