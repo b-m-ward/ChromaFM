@@ -1,19 +1,21 @@
 console.log('loaded player.js');
 
+chrome.browserAction.setBadgeBackgroundColor({color: '#313131'});
+
 var station = "http://ice1.somafm.com/groovesalad-256-mp3"
+
+var vol = 0.5;
 
 var launchButton = document.getElementById('launch-button');
 
 launchButton.addEventListener('click', () => {
-    console.log('play button clicked');
-    chrome.extension.sendMessage({action: "play", channel: station});
+    chrome.extension.sendMessage({action: "play", channel: station, volume: vol});
     chrome.browserAction.setBadgeText({text: ">"});
 });
 
 var pauseButton = document.getElementById('pause-button');
 
 pauseButton.addEventListener('click', () => {
-    console.log('pause button clicked');
     chrome.extension.sendMessage({action: "pause"});
     chrome.browserAction.setBadgeText({text: "="});
 });
@@ -21,6 +23,12 @@ pauseButton.addEventListener('click', () => {
 var selectStation = document.getElementById('select-station');
 
 selectStation.addEventListener('change', (e) => {
-    console.log(e.srcElement.value);
     station = e.srcElement.value;
 });
+
+var volSlider = document.getElementById('vol-slider');
+
+volSlider.addEventListener('input', (e) => {
+    vol = e.srcElement.value / 100;
+    chrome.extension.sendMessage({action: "changeVolume", volume: vol})
+})
